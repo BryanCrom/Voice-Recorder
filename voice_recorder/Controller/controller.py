@@ -1,5 +1,5 @@
-from ..Record.record import Recorder
-from ..Views.recording_view import RecordingView
+from ..Model.record import Recorder
+from ..View.recording_view import RecordingView
 
 class Controller:
     model: Recorder
