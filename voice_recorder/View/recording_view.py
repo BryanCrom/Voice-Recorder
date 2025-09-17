@@ -15,7 +15,7 @@ class RecordingView:
 
         # set up frame
         app = ctk.CTk()
-        app.geometry("400x300")
+        app.geometry("500x500")
         app.title("Voice Recorder")
 
         # add microphone image
@@ -27,7 +27,11 @@ class RecordingView:
 
         # add record button
         record_btn = ctk.CTkButton(master=app, text="RECORD", command=self.controller.start_recording)
-        record_btn.pack()
+        record_btn.pack(pady=40)
+
+        # add stop record button
+        stop_btn = ctk.CTkButton(master=app, text="STOP", command=self.controller.stop_recording)
+        stop_btn.pack(pady=40)
 
         # start GUI
         app.mainloop()
