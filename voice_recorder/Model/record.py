@@ -11,6 +11,7 @@ class Recording:
 
     is_recording: bool = False
     recording: list = field(default_factory=list)
+    plot_buffer: np.ndarray = field(default_factory=lambda: np.zeros(1024))
 
     def audio_callback(self, indata, frames, time, status) -> None:
         if self.is_recording:
