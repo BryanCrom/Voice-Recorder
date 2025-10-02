@@ -75,18 +75,21 @@ class RecordingView:
         self.record_btn.configure(image=self.play_image, command=self.start_recording)
 
     def update_waveform(self, samples):
-        self.canvas.delete(self.line)
 
         h = self.height // 2
         x_scale = self.width / len(samples)
         points = []
         for i, s in enumerate(samples):
+            s = float(s)
             x = i * x_scale
             y = h - (s * h)
             points.append((x, y))
 
         flat_points = [coord for xy in points for coord in xy]
-        self.line = self.canvas.create_line(flat_points, fill="red")
+        self.canvas.coords(self.line, flat_points)
+
+    def reset_waveform(self) -> None:
+        self.canvas.coords(self.line, 0, self.height // 2, self.width, self.height // 2)
 
     def update_timer(self):
         elapsed = self.controller.get_elapsed_time()

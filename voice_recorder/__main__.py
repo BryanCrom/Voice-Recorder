@@ -1,6 +1,6 @@
 import customtkinter as ctk
 
-from .Controller.controller import Controller
+from voice_recorder.Controller.controller import Controller
 
 app = ctk.CTk()
 app.geometry("500x500")

@@ -7,6 +7,7 @@ dependencies = [
     "customtkinter>=5.2.2",
     "matplotlib>=3.10.6",
     "pillow>=11.3.0",
+    "pyinstaller>=6.16.0",
     "scipy>=1.16.1",
     "sounddevice>=0.5.2",
     "soundfile>=0.13.1",

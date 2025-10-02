@@ -19,7 +19,7 @@ class Recording:
     def audio_callback(self, indata, frames, time, status) -> None:
         if status:
             print(status)
-        self.audio_buffer = indata[:, 0]
+        self.audio_buffer[:] = indata[:, 0]
         if self.is_recording:
             self.recording.append(indata.copy())
 
@@ -40,6 +40,7 @@ class Recording:
         self.recording.clear()
         self.start_timestamp = time.time()
         self.elapsed_time = 0
+        self.audio_buffer[:] = 0
         threading.Thread(target=self.record_thread, daemon=True).start()
 
     def stop_recording(self) -> None:
@@ -57,7 +58,7 @@ class Recording:
         self.audio = audio
 
     def get_samples(self):
-        return self.audio_buffer.copy()
+        return self.audio_buffer
 
     def update_timer(self):
         if self.is_recording and self.start_timestamp:

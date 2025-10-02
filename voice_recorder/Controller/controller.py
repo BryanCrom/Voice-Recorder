@@ -1,7 +1,7 @@
 import customtkinter as ctk
 
-from ..Model.record import Recording
-from ..View.recording_view import RecordingView
+from voice_recorder.Model.record import Recording
+from voice_recorder.View.recording_view import RecordingView
 
 class Controller:
     model: Recording
@@ -20,8 +20,11 @@ class Controller:
         self.model.stop_recording()
 
     def update(self):
-        samples = self.model.get_samples()
-        self.view.update_waveform(samples)
+        if self.model.is_recording:
+            samples = self.model.get_samples()
+            self.view.update_waveform(samples)
+        else:
+            self.view.reset_waveform()
         self.app.after(30, self.update)
 
     def get_elapsed_time(self) -> int:
